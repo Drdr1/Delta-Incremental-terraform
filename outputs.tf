@@ -1,12 +1,3 @@
-# ------------------------------------------------------------------------------
-# Outputs
-# ------------------------------------------------------------------------------
-
-output "compartment_id" {
-  description = "OCID of the created compartment"
-  value       = oci_identity_compartment.this.id
-}
-
 output "dataflow_application_id" {
   description = "OCID of the Data Flow application"
   value       = oci_dataflow_application.delta_copy.id
@@ -26,7 +17,6 @@ output "di_application_key" {
   description = "Key of the Data Integration application"
   value       = oci_dataintegration_workspace_application.this.key
 }
-
 
 output "di_schedule_key" {
   description = "Key of the daily schedule"
