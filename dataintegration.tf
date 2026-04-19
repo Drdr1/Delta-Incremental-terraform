@@ -2,7 +2,7 @@
 # Data Integration — Workspace
 # ------------------------------------------------------------------------------
 resource "oci_dataintegration_workspace" "this" {
-  compartment_id = oci_identity_compartment.this.id
+  compartment_id = var.compartment_id
   display_name   = var.di_workspace_name
   is_private_network_enabled = false
 }
@@ -47,7 +47,7 @@ locals {
 
     dataflowApplication = {
       applicationId = oci_dataflow_application.delta_copy.id
-      compartmentId = oci_identity_compartment.this.id
+      compartmentId = var.compartment_id
     }
 
     isConcurrentAllowed = false
@@ -60,7 +60,7 @@ resource "terraform_data" "delta_copy_oci_dataflow_task" {
     workspace_id   = oci_dataintegration_workspace.this.id
     project_key    = oci_dataintegration_workspace_project.delta_copy.key
     app_id         = oci_dataflow_application.delta_copy.id
-    compartment_id = oci_identity_compartment.this.id
+    compartment_id = var.compartment_id
   }
 
   provisioner "local-exec" {
